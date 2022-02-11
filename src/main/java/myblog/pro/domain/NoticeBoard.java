@@ -4,7 +4,6 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import myblog.pro.dto.NoticeBoardRequestDto;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -13,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class NoticeBoard {
 
