@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import myblog.pro.domain.NoticeBoard;
 import myblog.pro.dto.NoticeBoardRequestDto;
-import myblog.pro.dto.NoticeBoardResponseDto;
 import myblog.pro.repository.NoticeBoardRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -51,6 +50,5 @@ public class NoticeBoardService {
         Optional<NoticeBoard> findById = noticeBoardRepository.findById(board_id);
         findById.get().updateNoticeBoard(noticeBoardRequestDto);
         return findById.get();
-
     }
 }

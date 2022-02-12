@@ -5,8 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import myblog.pro.dto.NoticeBoardRequestDto;
 import myblog.pro.dto.NoticeBoardResponseDto;
 import myblog.pro.service.NoticeBoardService;
-import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
