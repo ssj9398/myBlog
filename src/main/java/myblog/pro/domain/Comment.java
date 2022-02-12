@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import myblog.pro.dto.CommentRequestDto;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -36,5 +37,9 @@ public class Comment {
 
     public void setPost(NoticeBoard noticeBoard){
         this.board = noticeBoard;
+    }
+
+    public void updateComment(CommentRequestDto commentRequestDto) {
+        this.contents = commentRequestDto.getContents();
     }
 }
