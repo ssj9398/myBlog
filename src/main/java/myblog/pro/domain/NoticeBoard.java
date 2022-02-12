@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import myblog.pro.dto.NoticeBoardRequestDto;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -43,4 +44,14 @@ public class NoticeBoard {
         this.boardDate = boardDate;
     }
 
+    public void updateNoticeBoard(NoticeBoardRequestDto noticeBoardRequestDto){
+        this.title= noticeBoardRequestDto.getTitle();
+        this.writer = noticeBoardRequestDto.getWriter();
+        this.content = noticeBoardRequestDto.getContent();
+    }
+
+    public void addComment(Comment comment){
+        this.comments.add(comment);
+        comment.setPost(this);
+    }
 }
