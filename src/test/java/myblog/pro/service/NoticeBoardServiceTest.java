@@ -1,6 +1,7 @@
 package myblog.pro.service;
 
 import myblog.pro.domain.NoticeBoard;
+import myblog.pro.dto.NoticeBoardRequestDto;
 import myblog.pro.repository.NoticeBoardRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ class NoticeBoardServiceTest {
 
     @Autowired
     private NoticeBoardRepository noticeBoardRepository;
+
+    @Autowired
+    private NoticeBoardService noticeBoardService;
 
     @Test
     void addPost() {
@@ -86,5 +90,24 @@ class NoticeBoardServiceTest {
         noticeBoardRepository.deleteById(saveBoard.getId());
         //then
         assertThat(saveBoard.getContent()).isEqualTo("내용");
+    }
+
+    @Test
+    @Rollback(value = false)
+    void modifyPost(){
+        //given
+        NoticeBoard noticeBoard = NoticeBoard.builder()
+                .writer("저자")
+                .content("내용")
+                .title("제목")
+                .boardDate(LocalDateTime.now())
+                .build();
+        NoticeBoard saveBoard = noticeBoardRepository.save(noticeBoard);
+        NoticeBoardRequestDto noticeBoardRequestDto = new NoticeBoardRequestDto("제목33","저자11","내용22");
+        //when
+        noticeBoardService.modifyPost(saveBoard.getId(), noticeBoardRequestDto);
+        Optional<NoticeBoard> byId = noticeBoardRepository.findById(saveBoard.getId());
+        //then
+        assertThat(byId.get().getContent()).isEqualTo("내용22");
     }
 }
