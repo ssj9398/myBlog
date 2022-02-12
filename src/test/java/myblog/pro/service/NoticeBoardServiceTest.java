@@ -5,6 +5,7 @@ import myblog.pro.repository.NoticeBoardRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
@@ -51,7 +52,7 @@ class NoticeBoardServiceTest {
         //when
         List<NoticeBoard> allByOrderByBoardDateDesc = noticeBoardRepository.findAllByOrderByBoardDateDesc();
         //then
-        assertThat(allByOrderByBoardDateDesc.size()).isEqualTo(5);
+        assertThat(allByOrderByBoardDateDesc.size()).isEqualTo(4);
     }
 
     @Test
@@ -68,5 +69,22 @@ class NoticeBoardServiceTest {
         Optional<NoticeBoard> findBoard = noticeBoardRepository.findById(saveBoard.getId());
         //then
         assertThat(findBoard.get().getId()).isSameAs(saveBoard.getId());
+    }
+
+    @Test
+    @Rollback(false)
+    void removePost(){
+        //given
+        NoticeBoard noticeBoard = NoticeBoard.builder()
+                .writer("저자")
+                .content("내용")
+                .title("제목")
+                .boardDate(LocalDateTime.now())
+                .build();
+        NoticeBoard saveBoard = noticeBoardRepository.save(noticeBoard);
+        //when
+        noticeBoardRepository.deleteById(saveBoard.getId());
+        //then
+        assertThat(saveBoard.getContent()).isEqualTo("내용");
     }
 }
