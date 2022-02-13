@@ -19,16 +19,19 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-<div class="jumbotron">
-    <h1>게시판</h1>
+<div class="jumbotron" style="text-align: center">
+    <h1>게.시.판</h1>
 </div>
-<button type="button" class="btn btn-primary" onclick = "location.href = '/api/write' ">글작성</button>
+<div style="text-align: right">
+<button style="margin-right: 60px; margin-bottom: 10px" type="button" class="btn btn-primary" onclick = "location.href = '/api/write' ">   글작성   </button>
+</div>
 <table class="table table-hover">
     <thead>
     <tr>
         <th scope="col" class="text-center">제목</th>
         <th scope="col" class="text-center">작성자</th>
         <th scope="col" class="text-center">작성시간</th>
+        <th scope="col" class="text-center">삭제</th>
     </tr>
     </thead>
     <tbody id="names-q1">
@@ -40,7 +43,7 @@
     $(document).ready(function () {
         $.ajax({
             type: "GET",
-            url: "http://localhost/post",
+            url: "/post",
             data: {},
             success: function (response) {
                 for (let i = 0; i < response.length; i++) {
@@ -56,18 +59,36 @@
                                     </td>
                                     -->
                                     <!-- 작성자, 작성일, 조회수 -->
-                                    <td style="width: 20%">
+                                    <td style="width: 30%; text-align: center;">
 
-                                        <a class="text-reset" href="api/board/detail?id=${id}">${title}</a>
+                                        <a style="font-family: neon;
+  color: #6b8ac6;
+  font-size: 2vw;
+  line-height: 2vw;
+  text-shadow: 0 0 3vw darkorange;  animation: neon 1s ease infinite;
+  -moz-animation: neon 1s ease infinite;
+  -webkit-animation: neon 1s ease infinite;" class="text-reset" href="api/board/detail?id=${id}">${title}</a>
                                     </td>
                                     <td style="width: 20%" class="text-center">${writer}</td>
                                     <!--<td style="width: 20%" class="text-center">${content}</td>-->
-                                    <td style="width: 10%" class="text-center">${boardDate}</td>
+                                    <td style="width: 30%" class="text-center">${boardDate}</td>
+                                    <td style="text-align: center"> <button type="button" class="btn btn-danger" onclick="deleteOne(${id});">삭제</button></td>
                                 </tr>`
                     $('#names-q1').append(temp);
                 }
             }
         })
     });
+
+    function deleteOne(id){
+        $.ajax({
+            type     : "Delete",
+            url      : "/post/"+id,
+            contentType: 'application/json',
+            success  : function(res) {
+                location.reload();
+            }
+        });
+    }
 </script>
 </html>

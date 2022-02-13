@@ -18,20 +18,26 @@
             integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
             crossorigin="anonymous"></script>
     <link href="/css/main.css" rel="stylesheet">
+    <style>
+        #wrap {
+            margin: auto;
+            width: 548px;
+        }
+    </style>
 </head>
 <body>
-<div class="jumbotron">
+<div class="jumbotron" style="text-align: center;">
     <h1>게시글 상세조회</h1>
 </div>
-<div class="btn_right mt15">
-    <button type="button" class="btn black mr5" onclick = "location.href = '/' ">목록으로</button>
-</div>
+
 <div id="wrap">
+    <div class="btn_right mt15" style="text-align: right; margin-bottom: 10px">
+        <button type="button" class="btn btn-primary" onclick = "location.href = '/' ">목록보기</button>
+    </div>
     <div id="container">
         <div class="inner">
             <form id="boardForm" name="boardForm">
                 <table width="100%" class="table02 table-hover">
-                    <caption><strong><span class="t_red">*</span> 표시는 필수입력 항목입니다.</strong></caption>
                     <colgroup>
                         <col width="20%">
                         <col width="*">
@@ -41,9 +47,11 @@
                     </tbody>
                 </table>
             </form>
-
+            <div style="margin: 20px 0px 0px 20px">
+            <h2 style="">댓글</h2>
+            </div>
             <div class="area-write">
-        <textarea class="field" placeholder="공유하고 싶은 소식을 입력해주세요" name="contents" id="contents" cols="30"
+        <textarea class="field" placeholder="댓글을 입력해보세요" name="contents" id="contents" cols="20" autofocus
                   rows="10"></textarea>
                 <!--            <button class="btn btn-danger" onclick="writePost()">작성하기</button>-->
                 <img src="/images/send.png" alt="" onclick="writeComment()">
@@ -65,8 +73,7 @@
             $("#board_content").focus();
             return;
         }
-        let yn = confirm("댓글을 등록하시겠습니까?");
-        if(yn){
+
             $.ajax({
                 type     : "POST",
                 url      : "/comment/" + param.id,
@@ -76,7 +83,7 @@
                     location.reload();
                 }
             });
-        }
+
     }
 
     //쿼리스트링 찾기
@@ -96,6 +103,14 @@
         let contents = $(`#${edit}-contents`).text().trim();
         $(`#${edit}-textarea`).val(contents);
 
+    }
+    function showEdits(id) {
+        $(`#${id}-editarea`).show();
+        $(`#${id}-submit`).show();
+        $(`#${id}-delete`).show();
+
+        $(`#${id}-contents`).hide();
+        $(`#${id}-edit`).hide();
     }
 
     //댓글 수정 서버로 보내기
@@ -129,7 +144,7 @@
         // 게시글 불러오기
         $.ajax({
             type: "GET",
-            url: "http://localhost/post/"+param.id,
+            url: "/post/"+param.id,
             data: {},
             success: function (response) {
                 for (let i = 0; i < response.length; i++) {
@@ -137,16 +152,16 @@
                     let writer = response[i]["writer"];
                     let content = response[i]["content"];
                     let temp = `<tr>
-                                    <th>제목<span class="t_red">*</span></th>
-                                    <td><input id="board_subject" name="board_subject" value="${title}" class="tbox01" readonly/></td>
+                                    <th>제목<span class="t_red"></span></th>
+                                    <td><input id="board_subject" name="board_subject" value="${title}" class="form-control" readonly/></td>
                                 </tr>
                                 <tr>
-                                    <th>작성자<span class="t_red">*</span></th>
-                                    <td><input id="board_writer" name="board_writer" value="${writer}" class="tbox01" readonly/></td>
+                                    <th>작성자<span class="t_red"></span></th>
+                                    <td><input id="board_writer" name="board_writer" value="${writer}" class="form-control" readonly/></td>
                                 </tr>
                                 <tr>
-                                    <th>내용<span class="t_red">*</span></th>
-                                    <td><textarea id="board_content" name="board_content" cols="100" rows="5" class="textarea01" readonly>${content}</textarea></td>
+                                    <th>내용<span class="t_red"></span></th>
+                                    <td><textarea id="board_content" name="board_content"  cols="50" rows="5" class="form-control" readonly>${content}</textarea></td>
                                 </tr>
                                 `
                     $('#tbody').append(temp);
@@ -179,7 +194,7 @@
                                         <div id="${id}-contents" class="text">${contents}
                                         </div>
                                         <div id="${id}-editarea" class="edit">
-                                            <textarea id="${id}-textarea" class="te-edit" cols="30" rows="5"></textarea>
+                                            <textarea style="background-color: #eff2f3;" id="${id}-textarea" class="te-edit" cols="30" rows="5"></textarea>
                                         </div>
                                     </div>
                                     <!-- 버튼 영역-->

@@ -18,6 +18,12 @@
             integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
             crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="/css/common.css"/>
+    <style>
+        #wrap {
+            margin: auto;
+            width: 700px;
+        }
+    </style>
 </head>
 <body>
 <div class="jumbotron">
@@ -29,30 +35,29 @@
             <h2>게시글 작성</h2>
             <form id="boardForm" name="boardForm">
                 <table width="100%" class="table02 table-hover">
-                    <caption><strong><span class="t_red">*</span> 표시는 필수입력 항목입니다.</strong></caption>
                     <colgroup>
                         <col width="20%">
                         <col width="*">
                     </colgroup>
                     <tbody id="tbody">
                     <tr>
-                        <th>제목<span class="t_red">*</span></th>
-                        <td><input id="board_subject" name="board_subject" value="" class="tbox01"/></td>
+                        <th>제목<span class="t_red"></span></th>
+                        <td><input id="board_subject" name="board_subject" value="" class="form-control"/></td>
                     </tr>
                     <tr>
-                        <th>작성자<span class="t_red">*</span></th>
-                        <td><input id="board_writer" name="board_writer" value="" class="tbox01"/></td>
+                        <th>작성자<span class="t_red"></span></th>
+                        <td><input id="board_writer" name="board_writer" value="" class="form-control"/></td>
                     </tr>
                     <tr>
-                        <th>내용<span class="t_red">*</span></th>
+                        <th>내용<span class="t_red"></span></th>
                         <td><textarea id="board_content" name="board_content" cols="100" rows="5" class="textarea01"></textarea></td>
                     </tr>
                     </tbody>
                 </table>
             </form>
             <div class="btn_right mt15">
-                <button type="button" class="btn black mr5" onclick = "location.href = '/' ">목록으로</button>
-                <button type="button" class="btn black" onclick="javascript:insertBoard();">등록하기</button>
+                <button type="button" class="btn btn-primary" onclick = "location.href = '/' ">목록으로</button>
+                <button type="button" class="btn btn-primary" onclick="javascript:insertBoard();">등록하기</button>
             </div>
         </div>
     </div>
@@ -93,8 +98,6 @@
             return;
         }
 
-        var yn = confirm("게시글을 등록하시겠습니까?");
-        if(yn){
             console.log(title,writer,content);
             $.ajax({
                 type     : "POST",
@@ -109,7 +112,6 @@
                 }
 
             });
-        }
     }
 
     /** 게시판 - 작성 콜백 함수 */
