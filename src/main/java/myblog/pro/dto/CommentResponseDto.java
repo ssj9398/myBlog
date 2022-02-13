@@ -11,11 +11,14 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CommentResponseDto {
+
+    private Long id;
     private String contents;
 
     private LocalDateTime commentDate;
 
     public CommentResponseDto(Comment comment) {
+        this.id = comment.getId();
         this.commentDate = comment.getCommentDate();
         this.contents = comment.getContents();
     }

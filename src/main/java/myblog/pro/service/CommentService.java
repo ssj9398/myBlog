@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import myblog.pro.domain.Comment;
 import myblog.pro.domain.NoticeBoard;
 import myblog.pro.dto.CommentRequestDto;
+import myblog.pro.dto.CommentResponseDto;
 import myblog.pro.repository.CommentRepository;
 import myblog.pro.repository.NoticeBoardRepository;
 import org.springframework.stereotype.Service;
