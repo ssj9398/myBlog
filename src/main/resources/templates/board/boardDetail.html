@@ -147,11 +147,9 @@
     }
 
     window.addEventListener("load",()=>{
-        $(document).ready(function () {
-            if (document.location.protocol == 'https:') {
-                document.location.href = document.location.href.replace('https:', 'http:');
-            }
-        });
+            // if (document.location.protocol === 'https:') {
+            //     document.location.href = document.location.href.replace('https:', 'http:');
+            // }
         let param = getUrlParams();
         // 게시글 불러오기
         $.ajax({
@@ -159,10 +157,14 @@
             url: "/post/"+param.id,
             data: {},
             success: function (response) {
-                for (let i = 0; i < response.length; i++) {
-                    let title = response[i]["title"];
-                    let writer = response[i]["writer"];
-                    let content = response[i]["content"];
+                console.log(response["data"][0]);
+
+                    let title = response["data"][0]["title"];
+                    let writer = response["data"][0]["writer"];
+                    let content = response["data"][0]["content"];
+                    console.log(title);
+                    console.log(writer);
+                    console.log(writer);
                     let temp = `<tr>
                                     <th>제목<span class="t_red"></span></th>
                                     <td><input id="board_subject" name="board_subject" value="${title}" class="form-control" readonly/></td>
@@ -177,7 +179,7 @@
                                 </tr>
                                 `
                     $('#tbody').append(temp);
-                }
+
             }
         });
 

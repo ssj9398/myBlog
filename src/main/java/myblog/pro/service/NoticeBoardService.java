@@ -35,9 +35,9 @@ public class NoticeBoardService {
         return noticeBoardRepository.findAllByOrderByBoardDateDesc();
     }
 
-    public Optional<NoticeBoard> findPostOne(Long board_id) {
-        Optional<NoticeBoard> findByPostOne = Optional.ofNullable(noticeBoardRepository.findById(board_id).orElseThrow(NullPointerException::new));
-        return Optional.of(findByPostOne.get());
+    public List<NoticeBoard> findPostOne(Long board_id) {
+        List<NoticeBoard> noticeBoards = noticeBoardRepository.findByPost(board_id);
+        return noticeBoards;
     }
 
     @Transactional

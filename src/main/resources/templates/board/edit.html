@@ -67,6 +67,9 @@
 <script type="text/javascript">
 
     window.addEventListener("load",()=> {
+        // if (document.location.protocol === 'https:') {
+        //     document.location.href = document.location.href.replace('https:', 'http:');
+        // }
         let param = getUrlParams();
         // 게시글 불러오기
         $.ajax({
@@ -74,23 +77,21 @@
             url: "/post/" + param.id,
             data: {},
             success: function (response) {
-                for (let i = 0; i < response.length; i++) {
+
                     console.log(response);
-                    let title = response[i]["title"];
-                    let writer = response[i]["writer"];
-                    let content = response[i]["content"];
+                    let title = response["data"][0]["title"];
+                    let writer = response["data"][0]["writer"];
+                    let content = response["data"][0]["content"];
                     $("#board_subject").val(title);
                     $("#board_writer").val(writer);
                     $("#board_content").val(content);
                 }
-            }
+
         });
     })
 
         $(document).ready(function () {
-            if (document.location.protocol == 'https:') {
-                document.location.href = document.location.href.replace('https:', 'http:');
-            }
+
         });
 
         //쿼리스트링 찾기
