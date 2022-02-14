@@ -25,7 +25,7 @@ public class CommentService {
 
     @Transactional
     public void addComment(Long post_id, CommentRequestDto commentRequestDto) {
-        Optional<NoticeBoard> byId = noticeBoardRepository.findById(post_id);
+        Optional<NoticeBoard> byId = Optional.ofNullable(noticeBoardRepository.findById(post_id).orElseThrow(NullPointerException::new));
         Comment comment = Comment.builder()
                 .contents(commentRequestDto.getContents())
                 .commentDate(LocalDateTime.now())
@@ -45,7 +45,7 @@ public class CommentService {
 
     @Transactional
     public void modifyComment(Long comment_id, CommentRequestDto commentRequestDto) {
-        Optional<Comment> commmentOne = commentRepository.findById(comment_id);
+        Optional<Comment> commmentOne = Optional.ofNullable(commentRepository.findById(comment_id).orElseThrow(NullPointerException::new));
         commmentOne.get().updateComment(commentRequestDto);
     }
 }

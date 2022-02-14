@@ -36,7 +36,7 @@ public class NoticeBoardService {
     }
 
     public Optional<NoticeBoard> findPostOne(Long board_id) {
-        Optional<NoticeBoard> findByPostOne = noticeBoardRepository.findById(board_id);
+        Optional<NoticeBoard> findByPostOne = Optional.ofNullable(noticeBoardRepository.findById(board_id).orElseThrow(NullPointerException::new));
         return Optional.of(findByPostOne.get());
     }
 
@@ -47,7 +47,7 @@ public class NoticeBoardService {
 
     @Transactional
     public NoticeBoard modifyPost(Long board_id, NoticeBoardRequestDto noticeBoardRequestDto) {
-        Optional<NoticeBoard> findById = noticeBoardRepository.findById(board_id);
+        Optional<NoticeBoard> findById = Optional.ofNullable(noticeBoardRepository.findById(board_id).orElseThrow(NullPointerException::new));
         findById.get().updateNoticeBoard(noticeBoardRequestDto);
         return findById.get();
     }
