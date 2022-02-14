@@ -1,18 +1,25 @@
 server:
-  port: 81
+  port: 80
 
 spring:
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     # DB Source
-    url: jdbc:mysql://localhost:3306/youBeMyCollegue?useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://localhost:3306/test?useSSL=false&allowPublicKeyRetrieval=true
     # DB username
     username: root
     # DB password
     password: 1q2w3e4r
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     properties:
       hibernate:
         format_sql: true
+
+logging:
+  level:
+    org.hibernate.SQL: debug
