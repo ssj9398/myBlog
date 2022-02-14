@@ -116,6 +116,13 @@
     //댓글 수정 서버로 보내기
     function submitEdit(id){
         let contents = $(`#${id}-textarea`).val();
+
+        if (contents === ""){
+            alert("내용을 입력해주세요.");
+            contents.focus();
+            return;
+        }
+
         $.ajax({
             type     : "Patch",
             url      : "/comment/"+id,
@@ -140,6 +147,11 @@
     }
 
     window.addEventListener("load",()=>{
+        $(document).ready(function () {
+            if (document.location.protocol == 'https:') {
+                document.location.href = document.location.href.replace('https:', 'http:');
+            }
+        });
         let param = getUrlParams();
         // 게시글 불러오기
         $.ajax({
