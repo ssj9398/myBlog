@@ -15,14 +15,14 @@ public class BoardController {
         return "board/board";
     }
 
-    @GetMapping("/api/comment")
-    public String comment(){
-        return "board/comment";
-    }
-
     @GetMapping("/api/write")
     public String write(){
         return "board/write";
+    }
+
+    @GetMapping("/api/edit")
+    public String edit(){
+        return "board/edit";
     }
 
     @GetMapping("/api/board/detail")
