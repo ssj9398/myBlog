@@ -17,7 +17,7 @@
 
 </br>
 
-<img src="https://img.shields.io/badge/java1.8-539bf5?style=for-the-badge&logo=java1.8&logoColor=white">
+<img src="https://img.shields.io/badge/java11-539bf5?style=for-the-badge&logo=java1.8&logoColor=white">
 <img src="https://img.shields.io/badge/jpa-green?style=for-the-badge&logo=jpa&logoColor=white">
 <img src="https://img.shields.io/badge/spring%20data%20jpa-green?style=for-the-badge&logo=springdatajpa&logoColor=white">
 <img src="https://img.shields.io/badge/gradle-1f4954?style=for-the-badge&logo=gradle&logoColor=white">
