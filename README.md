@@ -117,8 +117,8 @@
 |게시글 전체 조회|GET|post||{"id": id, "title": title, "writer": writer, "content": content, "boardDate": "2022-02-14T23:46:34.83317","comment": [{ "id": id,  "contents": contents: , "commentDate": "2022-02-14T23:46:41.06443"},{"id": id,  "contents": contents: , "commentDate":"2022-02-14T23:46:41.06443"}]}|
 |상세 게시글 조회|GET|/post/{board_id}||{"id": id, "title": title, "writer": writer, "content": content, "boardDate": "2022-02-14T23:46:34.83317","comment": [{ "id": id,  "contents": contents: , "commentDate": "2022-02-14T23:46:41.06443"},{"id": id,  "contents": contents: , "commentDate":"2022-02-14T23:46:41.06443"}]}|
 |게시글 삭제|DELETE|/post/{board_id}||{"success": true,"msg": "게시글 삭제 완료!"}|
-|게시글 수정|PATCH|/post/{board_id}|테스트3|{"success": true,"msg": "게시글 수정 완료!"}|
-|댓글 등록|POST|/comment/{post_id}|테스트3|{"success": true,"msg": "댓글 등록 완료!"}|
+|게시글 수정|PATCH|/post/{board_id}|{"title":"title","writer":"writer","content":"content"}|{"success": true,"msg": "게시글 수정 완료!"}|
+|댓글 등록|POST|/comment/{post_id}|{"comments":"comments"}{"success": true,"msg": "댓글 등록 완료!"}|
 |댓글 조회|GET|/comment/{post_id}||{"id": id,  "contents": contents: , "commentDate": "2022-02-14T23:46:41.06443"},|
 |댓글 삭제|DELETE|/comment/{comment_id}||{"success": true,"msg": "댓글 삭제 완료!"}|
 |댓글 수정|PATCH|/comment/{comment_id}|{"comments":"comments"}|{"success": true,"msg": "댓글 수정 완료!"}|
@@ -127,6 +127,7 @@
 <br><br>
 
 <h3 align="center"><b>🏷 ERD 🏷</b></h3>
+<div style="text-align: center;">
 <img src="https://user-images.githubusercontent.com/48196352/154030841-19b18806-fc69-4b8c-b04d-cd863816e3dc.png">
-
+</div>
 <br><br>
