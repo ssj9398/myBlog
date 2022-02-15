@@ -104,6 +104,9 @@ http://27.96.134.214/
     </tr>
 </table>
 
+<h4><b>📰 Swagger-Ui 📰</b></h4>
+<img src="https://user-images.githubusercontent.com/48196352/154162176-ab52b446-1067-4d75-9577-0694962fabab.png"/>
+
 
 
 ---
