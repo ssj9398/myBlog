@@ -23,6 +23,7 @@
 <img src="https://img.shields.io/badge/gradle-1f4954?style=for-the-badge&logo=gradle&logoColor=white">
 <img src="https://img.shields.io/badge/Junit5-green?style=for-the-badge&logo=Junit5&logoColor=white">
 <img src="https://img.shields.io/badge/mysql-skyblue?style=for-the-badge&logo=mysql&logoColor=white">
+<img src="https://img.shields.io/badge/Swagger UI-green?style=for-the-badge&logo=Swagger UI&logoColor=white">
 
 </br>
 
