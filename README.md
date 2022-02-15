@@ -125,5 +125,8 @@
 
 ---
 <br><br>
+
 <h3 align="center"><b>🏷 ERD 🏷</b></h3>
-![ERD](https://user-images.githubusercontent.com/48196352/154030841-19b18806-fc69-4b8c-b04d-cd863816e3dc.png)
+<img src="https://user-images.githubusercontent.com/48196352/154030841-19b18806-fc69-4b8c-b04d-cd863816e3dc.png">
+
+<br><br>
