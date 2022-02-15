@@ -8,7 +8,7 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     # DB Source
-    url: jdbc:mysql://localhost:3306/test?useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://localhost:3306/test?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul
     # DB username
     username: root
     # DB password
