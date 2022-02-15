@@ -29,7 +29,7 @@
 <img src="https://img.shields.io/badge/awsrds-orange?style=for-the-badge&logo=awsrds&logoColor=white">
 <img src="https://img.shields.io/badge/naverCloud-green?style=for-the-badge&logo=naverCloud&logoColor=white">
 <img src="https://img.shields.io/badge/ubuntu-orange?style=for-the-badge&logo=ubuntu&logoColor=white">
-<img src="https://img.shields.io/badge/gitAction-181717?style=for-the-badge&logo=gitAction&logoColor=white">
+<img src="https://img.shields.io/badge/git Action-blue?style=for-the-badge&logo=gitAction&logoColor=white">
 <img src="https://img.shields.io/badge/docker-blue?style=for-the-badge&logo=docker&logoColor=white">
 
 </br>
