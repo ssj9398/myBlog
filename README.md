@@ -4,6 +4,71 @@
 http://27.96.134.214/
 <br>
 <br>
+---
+
+- Docker, gitAction을 이용한 CI 구축 완료
+    - 도커파일을 추가한다. (Dockerfile)
+    ```
+    # 1. java 설치
+    FROM openjdk:11-jdk-alpine
+    ARG JAR_FILE=build/libs/app.jar
+    # 2. 소스 복사
+    COPY ${JAR_FILE} app.jar
+    ENTRYPOINT [ "java", "-jar","/app.jar" ]
+    EXPOSE 80
+    ```
+    - gitAction으로 main으로 푸시하면 도커로 푸시하기위해 pipeline을 추가한다. </br>
+    - (.github/workflows/ci-pipeline.yml)
+    ```yml
+    name: Java CI with Gradle
+
+    on:
+      push:
+        branches: [ main ]
+      pull_request:
+        branches: [ main ]
+    jobs:
+      build:
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v2
+        - name: Set up JDK 11
+          uses: actions/setup-java@v2
+          with:
+            java-version: '11'
+            distribution: 'adopt'
+        - name: Grant execute permission for gradlew
+          run:  chmod +x gradlew
+        - name: Build with Gradle
+          run: ./gradlew build
+        - name: Docker build
+          run: |
+            docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.PASSWORD }}
+            docker build -t spring-boot .
+            docker tag spring-boot alisyabob/spring-boot:${GITHUB_SHA::7}
+            docker push alisyabob/spring-boot:${GITHUB_SHA::7}
+    ```
+    
+    </br>
+
+    - 편의를 위해build.gradle 수정해주기
+    ```java
+    jar {
+        enabled = false
+    }
+
+    bootJar{ archivesBaseName = 'app'
+        archiveFileName = 'app.jar'
+        archiveVersion = "0.0.0"
+    }
+    ```
+    - 수동으로 도커 허브에 올리는 방법
+    ```
+    docker build -t spring-boot .
+    docker run -d -p 80:80 spring-boot
+    docker tag spring-boot 계정/spring-boot
+    docker push 계정/spring-boot
+    ```
 
 ---
 
