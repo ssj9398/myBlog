@@ -56,4 +56,10 @@ public class NoticeBoardController {
         noticeBoardService.modifyPost(board_id, noticeBoardRequestDto);
         return new ResponseEntity<>(new Success(true,"게시글 수정 완료!"), HttpStatus.OK);
     }
+
+
+    @GetMapping("/CICD")
+    public String cicd(){
+        return "<h1>cicdtest</h1>";
+    }
 }
