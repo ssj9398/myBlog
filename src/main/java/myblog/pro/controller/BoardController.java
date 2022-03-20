@@ -10,10 +10,10 @@ public class BoardController {
 //        return "home";
 //    }
 
-    @GetMapping("/")
-    public String post(){
-        return "board/board";
-    }
+//    @GetMapping("/")
+//    public String post(){
+//        return "board/board";
+//    }
 
     @GetMapping("/api/write")
     public String write(){
